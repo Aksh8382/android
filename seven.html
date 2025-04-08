@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <h2>activity_main.xml</h2>
+        <pre>
+      &lt;RelativeLayout
+       xmlns:android="http://schemas.android.com/apk/res/android" 
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:context=".MainActivity"&gt;
+      
+       &lt;TextView 
+       android:id="@+id/textCollegeName" 
+       android:layout_width="wrap_content" 
+       android:layout_height="wrap_content" 
+       android:layout_centerHorizontal="true" 
+       android:layout_marginTop="140dp" 
+       android:text="GH Raisoni Institute Of Business 
+      Management" 
+       android:textSize="24sp" 
+       android:textStyle="normal" 
+       android:gravity="center" 
+       android:textColor="@android:color/black" /&gt;
+      
+       &lt;Button 
+       android:id="@+id/buttonChangeProperties" 
+       android:layout_width="wrap_content" 
+       android:layout_height="wrap_content" 
+       android:layout_centerHorizontal="true" 
+       android:layout_below="@+id/textCollegeName" 
+       android:layout_marginTop="40dp" 
+       android:text="Change Properties" /&gt;
+      
+      &lt;/RelativeLayout&gt;
+        </pre>
+      
+        <h2>MainActivity.java</h2>
+        <pre>
+      import 
+      androidx.appcompat.app.AppCompatActivity;
+      import android.os.Bundle; 
+      import android.view.View;
+      import android.widget.Button; 
+      import android.widget.TextView; 
+      import android.graphics.Color; 
+      import android.graphics.Typeface; 
+      
+      public class MainActivity extends AppCompatActivity { 
+        private TextView textCollegeName;
+        private Button buttonChangeProperties;
+      
+        @Override 
+        protected void onCreate(Bundle savedInstanceState) { 
+          super.onCreate(savedInstanceState); 
+          setContentView(R.layout.activity_main);
+      
+          textCollegeName = findViewById(R.id.textCollegeName); 
+          buttonChangeProperties = findViewById(R.id.buttonChangeProperties); 
+      
+          buttonChangeProperties.setOnClickListener(new View.OnClickListener() { 
+            @Override 
+            public void onClick(View v) { 
+              // Change color to red 
+              textCollegeName.setTextColor(Color.RED); 
+              // Change font size to 32sp 
+              textCollegeName.setTextSize(32);
+              // Change font style to italic 
+              textCollegeName.setTypeface(null, Typeface.ITALIC);
+            } 
+          }); 
+        } 
+      }
+        </pre>
+      
+    <img src="\Education\image\Screenshot 2025-04-08 161743.png" alt="">
+</body>
+</html>

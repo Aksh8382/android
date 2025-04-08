@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>activity_main.xml :</h2>
+    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" 
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"&gt;
+    
+        &lt;TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:id="@+id/tvRg" 
+            android:layout_alignParentTop="true" 
+            android:layout_centerHorizontal="true" 
+            android:gravity="center" 
+            android:text="Rate This Lesson" 
+            android:textAppearance="?android:attr/textAppearanceMedium" /&gt;
+    
+        &lt;RadioGroup 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:id="@+id/radioGroup" 
+            android:layout_below="@+id/tvRg" 
+            android:layout_centerHorizontal="true" 
+            android:orientation="horizontal" 
+            android:showDividers="beginning|middle|end" 
+            android:layout_marginTop="10dp"&gt;
+    
+            &lt;RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rb1" android:text="EXCELLENT" android:checked="false"/&gt;
+            &lt;RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rb2" android:text="GOOD" android:checked="false"/&gt;
+            &lt;RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rb3" android:text="OKAY" android:checked="false"/&gt;
+            &lt;RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rb4" android:text="POOR" android:checked="false"/&gt;
+    
+        &lt;/RadioGroup&gt;
+    
+        &lt;TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:id="@+id/tvCb" 
+            android:layout_below="@+id/radioGroup" 
+            android:gravity="center" 
+            android:layout_marginTop="66dp" 
+            android:text="Give Your Suggestions Here." 
+            android:textAppearance="?android:attr/textAppearanceMedium" /&gt;
+    
+        &lt;CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/cb1" android:layout_below="@+id/tvCb" android:text="I really enjoy this lesson." android:checked="false"/&gt;
+        &lt;CheckBox android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/cb2" android:layout_below="@+id/cb1" android:text="I will prefer this lesson over any other." android:checked="false"/&gt;
+        &lt;CheckBox android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/cb3" android:layout_below="@+id/cb2" android:text="I would like to hear more from you." android:checked="false"/&gt;
+        &lt;CheckBox android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/cb4" android:layout_below="@+id/cb3" android:text="I am satisfied with the content and full description." android:checked="false"/&gt;
+    
+        &lt;Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btnSubmit" android:layout_below="@+id/cb4" android:layout_centerHorizontal="true" android:layout_marginTop="10dp" android:text="SUBMIT"/&gt;
+    
+    &lt;/RelativeLayout&gt;
+    </code></pre>
+    
+    <h2>MainActivity.java :</h2>
+    <pre><code>import androidx.appcompat.app.AppCompatActivity;
+    import android.os.Bundle;
+    import android.view.View;
+    import android.widget.Button;
+    import android.widget.CheckBox;
+    import android.widget.RadioButton;
+    import android.widget.RadioGroup;
+    import android.widget.Toast;
+    
+    public class MainActivity extends AppCompatActivity {
+        RadioGroup radioGroup;
+        RadioButton selectedRadioButton;
+        Button buttonSubmit;
+        CheckBox cb1, cb2, cb3, cb4;
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+    
+            buttonSubmit = findViewById(R.id.btnSubmit);
+            radioGroup = findViewById(R.id.radioGroup);
+            cb1 = findViewById(R.id.cb1);
+            cb2 = findViewById(R.id.cb2);
+            cb3 = findViewById(R.id.cb3);
+            cb4 = findViewById(R.id.cb4);
+    
+            buttonSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedRadioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+                    String yourVote = selectedRadioButton.getText().toString();
+    
+                    Toast.makeText(MainActivity.this, "Selected Radio Button is: " + yourVote,
+                            Toast.LENGTH_LONG).show();
+    
+                    String checkBoxChoices = "";
+    
+                    checkBoxChoices += cb1.getText().toString() + "\t" + (cb1.isChecked() ? "YES" : "NO");
+                    checkBoxChoices += cb2.getText().toString() + "\t" + (cb2.isChecked() ? "YES" : "NO");
+                    checkBoxChoices += cb3.getText().toString() + "\t" + (cb3.isChecked() ? "YES" : "NO");
+                    checkBoxChoices += cb4.getText().toString() + "\t" + (cb4.isChecked() ? "YES" : "NO");
+    
+                    Toast.makeText(MainActivity.this,
+                            "Selected Radio Button is: " + yourVote + "\n CheckBox choices: \n" + checkBoxChoices,
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+    </code></pre>
+    <img src="\Education\image\Screenshot 2025-04-08 164446.png" alt="">
+    </body>
+</html>

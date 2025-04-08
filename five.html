@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>activity_main.xml</h2>
+    <pre>
+&lt;?
+ xml version="1.0" encoding="utf-8"
+ &lt;RelativeLayout
+ ?&gt;
+ xmlns:android="http://schemas.android.com/apk/res/android" 
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity"&gt;
+
+ &lt;ScrollView 
+ android:layout_width="fill_parent" 
+ android:layout_height="fill_parent" 
+ android:layout_margin="10dp"
+ android:scrollbars="vertical"&gt;
+
+     &lt;LinearLayout 
+     android:layout_width="fill_parent" 
+     android:layout_height="fill_parent" 
+     android:layout_margin="10dp" 
+     android:orientation="vertical"&gt;
+
+         &lt;TextView 
+         android:layout_width="fill_parent" 
+         android:layout_height="wrap_content" 
+         android:layout_marginTop="20dp" 
+         android:gravity="center" 
+         android:text="Top of the page." 
+         android:textSize="30sp" /&gt;
+
+         &lt;TextView 
+         android:layout_width="fill_parent" 
+         android:layout_height="wrap_content" 
+         android:layout_marginTop="900dp" 
+         android:layout_marginBottom="20dp" 
+         android:gravity="center" 
+         android:text="Bottom of the page." 
+         android:textSize="30sp" /&gt;
+
+     &lt;/LinearLayout&gt;
+ &lt;/ScrollView&gt;
+
+&lt;/RelativeLayout&gt;
+    </pre>
+    <img src="\Education\image\Screenshot 2025-04-08 161145.png">
+</body>
+</html>

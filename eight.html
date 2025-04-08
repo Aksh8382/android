@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>activity_main.xml</h2>
+    <pre>
+  &lt;?
+   ?&gt;
+  xml version="1.0" encoding="utf-8"
+  &lt;androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"&gt;
+  
+    &lt;TextView 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      android:text="Hello World!"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" 
+      app:layout_constraintTop_toTopOf="parent" /&gt;
+  
+    &lt;Button 
+      android:layout_width="143dp" 
+      android:layout_height="63dp" 
+      android:id="@+id/toast" 
+      android:layout_marginBottom="44dp" 
+      app:layout_constraintBottom_toBottomOf="parent" 
+      app:layout_constraintEnd_toEndOf="parent" 
+      app:layout_constraintHorizontal_bias="0.515" 
+      app:layout_constraintStart_toStartOf="parent"/&gt;
+  
+  &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+    </pre>
+  
+    <h2>MainActivity.java</h2>
+    <pre>
+  import androidx.appcompat.app.AppCompatActivity;
+  import android.os.Bundle;
+  import android.widget.Toast;
+  
+  public class MainActivity extends AppCompatActivity {
+  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      notify("onCreate");
+    }
+  
+    @Override
+    protected void onPause() {
+      super.onPause();
+      notify("onPause");
+    }
+  
+    @Override
+    protected void onResume() {
+      super.onResume();
+      notify("onResume");
+    }
+  
+    @Override
+    protected void onStop() {
+      super.onStop();
+      notify("onStop");
+    }
+  
+    @Override
+    protected void onDestroy() {
+      super.onDestroy();
+      notify("onDestroy");
+    }
+  
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+      super.onRestoreInstanceState(savedInstanceState);
+      notify("onRestoreInstanceState");
+    }
+  
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+      super.onSaveInstanceState(outState);
+      notify("onSaveInstanceState");
+    }
+  
+    private void notify(String methodName) {
+      String name = this.getClass().getName();
+      String[] strings = name.split("\\.");
+      Toast.makeText(getApplicationContext(), methodName + "" + strings[strings.length - 1], Toast.LENGTH_LONG).show();
+    }
+  }
+    </pre>
+  <img src="\Education\image\Screenshot 2025-04-08 162131.png" alt="">
+  </body>
+</html>

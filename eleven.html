@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>activity_main.xml :</h2>
+    <pre><code>&lt;RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:padding="16dp"
+     tools:context=".MainActivity"&gt; 
+    
+    &lt;RadioGroup 
+    android:id="@+id/radioGroup" 
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content" 
+    android:orientation="vertical"&gt;
+    
+     &lt;RadioButton 
+    android:id="@+id/radioButtonMale" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="Male"/&gt; 
+    
+    &lt;RadioButton 
+    android:id="@+id/radioButtonFemale" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="Female"/&gt; 
+    
+    &lt;RadioButton 
+    android:id="@+id/radioButtonOther" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="Other"/&gt; 
+    
+    &lt;/RadioGroup&gt; 
+    
+    &lt;Button 
+    android:id="@+id/buttonSubmit" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/radioGroup" 
+    android:layout_centerHorizontal="true" 
+    android:layout_marginTop="16dp" 
+    android:text="Submit" 
+    android:onClick="onSubmit"/&gt; 
+    
+    &lt;/RelativeLayout&gt;
+    </code></pre>
+    
+    <h2>MainActivity.java :</h2>
+    <pre><code>import androidx.appcompat.app.AppCompatActivity; 
+    import android.os.Bundle; 
+    import android.view.View; 
+    import android.widget.RadioButton; 
+    import android.widget.RadioGroup; 
+    import android.widget.Toast; 
+    
+    public class MainActivity extends AppCompatActivity { 
+    
+    private RadioGroup radioGroup; 
+    private RadioButton radioButton; 
+    
+    @Override 
+    protected void onCreate(Bundle savedInstanceState) { 
+        super.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_main); 
+        radioGroup = findViewById(R.id.radioGroup); 
+    } 
+    
+    public void onSubmit(View view) { 
+        int selectedId = radioGroup.getCheckedRadioButtonId(); 
+        
+        if (selectedId == -1) { 
+            // No RadioButton is checked 
+            Toast.makeText(MainActivity.this, "Please select a gender", Toast.LENGTH_SHORT).show(); 
+        } 
+        else {
+            // RadioButton is checked
+            radioButton = findViewById(selectedId);
+            Toast.makeText(MainActivity.this, "Selected gender: " + radioButton.getText(), Toast.LENGTH_SHORT).show(); 
+        } 
+    } 
+    }
+    </code></pre>
+    <img src="\Education\image\Screenshot 2025-04-08 163450.png" alt="Male  & Female">
+    </body>
+</html>
