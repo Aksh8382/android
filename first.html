@@ -6,45 +6,254 @@
     <title>Document</title>
 </head>
 <body>
-    <pre>
-        <b>1) Install Java Development Kit (JDK): </b>
-        Download the latest version of JDK from the official Oracle website: 
-        https://www.oracle.com/java/technologies/javase-downloads.html 
-        Run the installer and follow the instructions to complete the installation. 
-        After the installation, set the PATH environment variable for Java on your 
-        computer 
-       <b>2) Install Android SDK: </b>
-        Download the latest version of Android SDK Command-line Tools from 
-        the official Android website: 
-        https://developer.android.com/studio#downloads 
-        Extract the downloaded file to a directory on your computer. 
-        Set the ANDROID_HOME environment variable to the directory where 
-        you extracted the Android SDK. To do this, follow the instructions for 
-        your operating system: 
-        Windows: https://developer.android.com/studio/intro/update#set- 
-        upyourandroid-home-environment-variable 
-        Mac: https://developer.android.com/studio/intro/update#macos-usr- 
-        local 
-        <b>3) Install Eclipse IDE: </b>
-        Download the latest version of Eclipse IDE for Java Developers from the 
-        official Eclipse website: https://www.eclipse.org/downloads/packages/ 
-        Extract the downloaded file to a directory on your computer. 
-        <b>4) Install Android Development Tools (ADT) plugins: </b>
-        Open Eclipse IDE. 
-        Click on Help > Eclipse Marketplace. 
-        Search for "Android Development Tools" and click "Go". 
-        Select "Android Development Tools for Eclipse" and click "Install". 
-        Follow the instructions to complete the installation. 
-        Restart Eclipse IDE 
-        <b>5) Create an Android virtual device: </b>
-        Open Eclipse IDE. 
-        Click on Window > Android SDK and AVD Manager. 
-        Click on the "Virtual Devices" tab. 
-        Click the "New" button to create a new virtual device.
-         Follow the instructions to configure the virtual device.
-         Click the "Create AVD" button to create the virtual device. 
-        That's it! We have now installed and set up Java Development Kit (JDK), Android SDK, 
-        Eclipse IDE, Android Development Tools (ADT) plugins, and created an Android virtual 
-        device. We can now start developing Android applications in Eclipse IDE. </pre>
-</body>
+ 
+     <h2>Prolog Code:</h2>
+     <pre>
+     
+ 
+     1. Write a program in prolog for Cut Predicate Function. 
+     max(X, Y, X) :- X &gt;= Y, !.
+     max(X, Y, Y) :- X &lt; Y.
+     
+     max_cal(X, Y, Max) :- X &gt;= Y, !, Max = X ; Max = Y.
+ 
+     OUTPUT 
+     max(11,25,R). Or max_cal(5,14,R).
+  
+ 2. Write a program in prolog for simple recursion. 
+ factorial(0,1). 
+ factorial(N,Result) :- 
+ N>0, 
+ N1 is N-1, 
+ factorial(N1,TempResult), 
+ Result is N * TempResult. 
+ 
+ OUTPUT :
+ factorial(5,Result).
+  
+  
+   
+ 3. Write a program in prolog for list predicate function 
+ length([], 0). 
+ length([_|Tail], N) :- 
+ length(Tail, N1), 
+ N is N1 + 1. 
+ length([], 0). 
+ length([_|Tail], N) :- 
+ length(Tail, N1), 
+ N is N1 + 1. 
+  
+ OUTPUT :
+ length([1,2,3],3).
+ length([1,2,3,4],5).
+   
+ 4. Write a program in prolog for appending a list 
+ list_length([], 0).  
+ list_length([_|Tail], N) :-  
+ list_length(Tail, N1),  
+ N is N1 + 1.  
+   
+ append([], L, L).  
+ append([H|T], L2, [H|T2]) :-  
+ append(T, L2, T2). 
+ 
+ OUTPUT :
+ list_length([1,2,3,4],N).
+   
+ 5. Write a program in prolog to implement medical diagnostic 
+ elements. 
+ has_symptom(flu,fever). 
+ has_symptom(flu,cough). 
+ has_symptom(flu,sore_throat). 
+ has_symptom(flu,body_aches). 
+ 
+ OUTPUT :
+ has_symptom(flu,fever),has_symptom(flu,cough),has_symptom(flu,sore_throat),has_symptom(flu,body_aches). 
+ Diagnosis = flu.
+   
+ 6. Write a program in prolog for password. 
+ correct_password('akshay').  
+ check_password(Password):-  
+ correct_password('akshay'),  
+ write('Password Is Correct'), nl.  
+ check_password(_) :-  
+ write('Incorrect Password, try again.'), nl.  
+ run:-  
+ write('Enter Your Password: '). 
+ read(Password). 
+ check_password(Password). 
+  
+ OUTPUT :
+ 
+  run.
+   
+ 7. Write a program in Prolog for DFS and BFS. 
+ i) BFS 
+ edge(a,b).  
+ edge(a,c).  
+ edge(b,d).  
+ edge(b,e).  
+ edge(c,f).  
+ edge(e,g).  
+ bfs(Start,Goal):-  
+ bfs_helper([[Start]],Goal).  
+ bfs_helper([[Goal|Path]|_],Goal):-  
+ reverse([Goal|Path],FullPath),  
+ write(FullPath),nl.  
+ bfs_helper([Path|RestPaths],Goal):-  
+ Path = [Current|_],  
+ findall([Next,Current|Path],(edge(Current,Next), \+  
+ member(Next,Path)), Newpath),  
+ append(RestPaths,NewPaths,UpdatedPaths),  
+ bfs_helper(UpdatedPaths, Goal). 
+ 
+ OUTPUT :
+ bfs(a,g).
+ 
+ ii). DFS 
+ edge(a,b).  
+ edge(a,c).  
+ edge(b,d).  
+ edge(b,e).  
+ edge(c,f).  
+ edge(e,g).  
+ dfs(Start,Goal):-  
+ dfs_helper([Start],Goal).  
+ dfs_helper([Goal|_],Goal).  
+ dfs_helper([Current|Rest],Goal):-  
+ edge(Current,Next),  
+ \+ member(Next,[Current|Rest]),  
+ dfs_helper([Next,Current|Rest],Goal). 
+ 
+ OUTPUT :
+ dfs(a,g).
+  
+   
+ 8. Write a program in Prolog to implement Water Jug 
+ problem. 
+  
+ % Entry point: water_jug(X, Y, Z) - solve the problem with jugs of capacity X 
+ and Y and target amount Z. 
+ water_jug(X, Y, Z) :- 
+     solve(X, Y, Z, 0, 0, []).  % Start with both jugs empty and an empty list of 
+ states to prevent cycles. 
+  
+ % Base case: Goal is reached when either jug has the target amount. 
+ solve(_, _, Z, Z, _, _) :- 
+     write('Goal reached: '), write(Z), nl. 
+  
+ % Avoid unnecessary computation by not revisiting states that have already 
+ been visited. 
+ solve(X, Y, Z, A, B, Visited) :- 
+     \+ member((A, B), Visited),   % Check if the state (A, B) has already been 
+ visited 
+     NewVisited = [(A, B)|Visited], % Add the current state to the list of visited 
+ states 
+     ( 
+         % Fill the first jug to capacity X. 
+         (A < X, NewA is X, solve(X, Y, Z, NewA, B, NewVisited), write('Fill the first 
+ jug to capacity: '), write(NewA), nl); 
+          
+         % Fill the second jug to capacity Y. 
+         (B < Y, NewB is Y, solve(X, Y, Z, A, NewB, NewVisited), write('Fill the 
+ second jug to capacity: '), write(NewB), nl); 
+  
+         % Empty the first jug. 
+         (A > 0, NewA is 0, solve(X, Y, Z, NewA, B, NewVisited), write('Empty the 
+ first jug: '), write(NewA), nl); 
+  
+         % Empty the second jug. 
+         (B > 0, NewB is 0, solve(X, Y, Z, A, NewB, NewVisited), write('Empty the 
+ second jug: '), write(NewB), nl); 
+  
+         % Pour water from the first jug to the second jug. 
+         (A > 0, B < Y, Pour is min(A, Y - B), NewA is A - Pour, NewB is B + Pour, 
+          solve(X, Y, Z, NewA, NewB, NewVisited),  
+          write('Pour from first jug to second jug: '), write(NewA), write(' '), 
+ write(NewB), nl); 
+  
+         % Pour water from the second jug to the first jug. 
+         (B > 0, A < X, Pour is min(B, X - A), NewA is A + Pour, NewB is B - Pour, 
+          solve(X, Y, Z, NewA, NewB, NewVisited), 
+          write('Pour from second jug to first jug: '), write(NewA), write(' '), 
+ write(NewB), nl) 
+     ). 
+  OUTPUT :
+  water_jug(5,3,4).
+   
+ 9. Write a program in Prolog to implement Tic tac toe 
+ Problem. 
+  
+ initial_board([1, 2, 3, 4, 5, 6, 7, 8, 9]). 
+ display_board([A, B, C, D, E, F, G, H, I]) :- 
+     write(' '), write(A), write(' | '), write(B), write(' | '), write(C), nl, 
+     write('---+---+---'), nl, 
+     write(' '), write(D), write(' | '), write(E), write(' | '), write(F), nl, 
+     write('---+---+---'), nl, 
+     write(' '), write(G), write(' | '), write(H), write(' | '), write(I), nl, nl. 
+ win(Board, Player) :- 
+     winning_line(Board, Player, 1, 2, 3); 
+     winning_line(Board, Player, 4, 5, 6); 
+     winning_line(Board, Player, 7, 8, 9); 
+     winning_line(Board, Player, 1, 4, 7); 
+     winning_line(Board, Player, 2, 5, 8); 
+     winning_line(Board, Player, 3, 6, 9); 
+     winning_line(Board, Player, 1, 5, 9); 
+     winning_line(Board, Player, 3, 5, 7). 
+ winning_line(Board, Player, X, Y, Z) :- 
+     nth1(X, Board, Player), 
+     nth1(Y, Board, Player), 
+     nth1(Z, Board, Player). 
+ draw(Board) :- 
+     \+ member(_, Board). 
+ player_move(Board, Player, NewBoard) :- 
+     write('Player '), write(Player), write(', enter your move (1-9): '), 
+     read(Move), 
+     integer(Move), 
+     between(1, 9, Move), 
+     nth1(Move, Board, Move), 
+     replace(Board, Move, Player, NewBoard). 
+ replace([_|T], 1, X, [X|T]). 
+ replace([H|T], I, X, [H|R]) :- 
+     I > 1, 
+     I1 is I - 1, 
+     replace(T, I1, X, R). 
+ play :- 
+     initial_board(Board), 
+     display_board(Board), 
+     game_loop(Board, 'X'). 
+ game_loop(Board, Player) :- 
+     (win(Board, 'X') -> write('Player X wins!'), nl; 
+      win(Board, 'O') -> write('Player O wins!'), nl; 
+      draw(Board) -> write('It\'s a draw!'), nl; 
+      player_move(Board, Player, NewBoard), 
+      display_board(NewBoard), 
+      switch_player(Player, NextPlayer), 
+      game_loop(NewBoard, NextPlayer)). 
+ switch_player('X', 'O'). 
+ switch_player('O', 'X'). 
+ 
+  OUTPUT :
+  play.
+   
+ 10. Write a program in Prolog to implement 
+ Missionaries and Cannibals problem. 
+  
+ move([CL,ML,left,CR,MR], [CL2,ML,right,CR2,MR2]):- 
+ CR2 is CR + 1, 
+ CL2 is CL - 1, 
+ MR2 is MR + 1, 
+ legal(CL2, ML,CR2,MR2). 
+  
+ move([CL,ML,right,CR,MR],[CL,ML2,left,CR,MR2]) :- 
+ CR2 is CR - 1, 
+ CL2 is CL + 1, 
+ write('Moved to '), write([CL2, ML2, left,CR2,MR2]), nl, 
+ legal(CL2,ML,CR2,MR2). 
+ 
+ output 
+ write([CL2,ML2,left,CR2,MR2]).
+     </pre>
+     
+     </body>
 </html>
